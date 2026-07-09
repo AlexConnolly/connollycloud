@@ -28,6 +28,17 @@
       }).join("") + "</ul>";
     }
 
+    function renderProjects(projects) {
+      if (!projects || !projects.length) return "";
+      var items = projects.map(function (p) {
+        var name = p.url ? '<a href="' + esc(p.url) + '">' + esc(p.name) + "</a>" : esc(p.name);
+        var desc = p.description ? " &mdash; " + esc(p.description) : "";
+        return "<li>" + name + desc + "</li>";
+      }).join("");
+      return '<section class="block"><h2 class="section-title">Projects</h2>' +
+        '<ul class="projects">' + items + "</ul></section>";
+    }
+
     function renderProfile(person) {
       var avatar = person.avatar
         ? '<img class="avatar avatar-lg" src="' + esc(person.avatar) + '" alt="" width="96" height="96">'
@@ -70,6 +81,7 @@
         }
         document.title = person.name + " · connolly.cloud";
         document.getElementById("app").innerHTML = renderProfile(person) +
+          renderProjects(person.projects) +
           '<section class="feed"><h2 class="feed-title">Posts</h2>' +
           '<p class="loading">Loading posts&hellip;</p></section>';
 

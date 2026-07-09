@@ -24,24 +24,6 @@
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
     }[c]));
 
-    function linkList(links) {
-      if (!links || !links.length) return "";
-      return '<ul class="links">' + links.map((l) =>
-        '<li><a href="' + esc(l.url) + '">' + esc(l.label) + '</a></li>'
-      ).join("") + "</ul>";
-    }
-
-    function projectList(projects) {
-      if (!projects || !projects.length) return "";
-      return '<ul class="projects">' + projects.map((p) => {
-        const name = p.url
-          ? '<a href="' + esc(p.url) + '">' + esc(p.name) + "</a>"
-          : esc(p.name);
-        const desc = p.description ? ' &mdash; ' + esc(p.description) : "";
-        return "<li>" + name + desc + "</li>";
-      }).join("") + "</ul>";
-    }
-
     function person(m) {
       const profileUrl = m.id ? "profile.html?u=" + encodeURIComponent(m.id) : null;
       const avatarImg = m.avatar
@@ -54,18 +36,12 @@
         ? '<a href="' + profileUrl + '">' + esc(m.name) + "</a>"
         : esc(m.name);
       const role = m.role ? '<span class="role">' + esc(m.role) + "</span>" : "";
-      const more = profileUrl
-        ? '<p class="more"><a href="' + profileUrl + '">View profile &amp; posts &rarr;</a></p>'
-        : "";
       const recent = m.id ? '<div class="recent" data-user="' + esc(m.id) + '"></div>' : "";
       return '<article class="person">' +
         '<div class="person-head">' + avatar +
         '<div><h3>' + name + "</h3>" + role + "</div></div>" +
-        (m.description ? "<p>" + esc(m.description) + "</p>" : "") +
+        (m.description ? '<p class="lede">' + esc(m.description) + "</p>" : "") +
         recent +
-        projectList(m.projects) +
-        linkList(m.links) +
-        more +
       "</article>";
     }
 

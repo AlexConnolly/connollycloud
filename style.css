@@ -86,6 +86,7 @@ h2 {
 }
 
 .person > p { margin: 0.9rem 0 0; }
+.person .lede { color: var(--fg); }
 
 ul.projects { margin: 0.9rem 0 0; padding: 0; list-style: none; }
 ul.projects li { margin-top: 0.3rem; }
@@ -133,7 +134,7 @@ ul.links {
 .avatar-lg { width: 72px; height: 72px; }
 .profile-head .bio { margin: 1.1rem 0 0; }
 
-.feed-title {
+.feed-title, .section-title {
   margin: 0 0 0.5rem;
   font-size: 0.8rem;
   font-weight: 600;
@@ -141,6 +142,8 @@ ul.links {
   letter-spacing: 0.08em;
   color: var(--muted);
 }
+
+.block { margin-bottom: 2.5rem; }
 
 .post {
   padding: 1.75rem 0;
