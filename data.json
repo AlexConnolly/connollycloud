@@ -1,20 +1,20 @@
 {
   "site": {
     "title": "connolly.cloud",
-    "welcome": "Welcome to the Connolly family homepage.",
-    "about": "This little corner of the internet is a directory of the Connolly family and the things we make, tinker with, and share. It's deliberately simple: fast to load, easy to edit, and built to last. Poke around and say hello."
+    "welcome": "The Connolly family homepage — a directory of us and the things we build.",
+    "about": ""
   },
   "family": [
     {
       "name": "Alex Connolly",
-      "avatar": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=Alex",
-      "role": "Webmaster",
-      "description": "Keeper of connolly.cloud and general tinkerer of things that plug in.",
+      "avatar": "assets/alex.png",
+      "role": "Software Engineer",
+      "description": "I build things for the web and tinker with everything else. This site is one of my projects — more to come.",
       "projects": [
         {
           "name": "connolly.cloud",
           "url": "https://github.com/AlexConnolly/connollycloud",
-          "description": "This very website."
+          "description": "This site. A tiny, data-driven family homepage on GitHub Pages."
         }
       ],
       "links": [
