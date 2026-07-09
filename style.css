@@ -101,9 +101,75 @@ ul.links {
   font-size: 0.9rem;
 }
 
+.more { margin: 0.9rem 0 0; font-size: 0.9rem; }
+
+/* ---- Profile page ---- */
+
+.crumb { margin: 0 0 2rem; font-size: 0.9rem; }
+.crumb a { color: var(--muted); }
+
+.profile-head { margin-bottom: 2.5rem; }
+.profile-head h1 { margin: 0; font-size: 1.5rem; font-weight: 650; letter-spacing: -0.01em; }
+.avatar-lg { width: 72px; height: 72px; }
+.profile-head .bio { margin: 1.1rem 0 0; }
+
+.feed-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.post {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--line);
+}
+.post:last-child { border-bottom: 1px solid var(--line); }
+
+.post-meta { font-size: 0.85rem; color: var(--muted); }
+.post-meta a { color: var(--muted); }
+.post h2 { margin: 0.25rem 0 0.75rem; font-size: 1.15rem; font-weight: 650; }
+
+/* ---- Rendered markdown ---- */
+
+.post-body { line-height: 1.7; }
+.post-body > :first-child { margin-top: 0; }
+.post-body > :last-child { margin-bottom: 0; }
+.post-body h1, .post-body h2, .post-body h3 { font-size: 1.05rem; margin: 1.4rem 0 0.6rem; }
+.post-body p { margin: 0.9rem 0; }
+.post-body ul, .post-body ol { margin: 0.9rem 0; padding-left: 1.4rem; }
+.post-body li { margin-top: 0.2rem; }
+.post-body img { max-width: 100%; height: auto; border-radius: 4px; }
+.post-body a { color: var(--accent); }
+
+.post-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--line);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+.post-body pre {
+  background: var(--line);
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.post-body pre code { background: none; padding: 0; font-size: 0.85rem; }
+
+.post-body blockquote {
+  margin: 0.9rem 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+.post-body hr { border: none; border-top: 1px solid var(--line); margin: 1.6rem 0; }
+
 /* ---- Misc ---- */
 
-.loading, .error { color: var(--muted); padding: 2rem 0; }
+.loading, .error, .muted { color: var(--muted); padding: 1rem 0; }
 .error { color: #b00020; }
 
 footer {

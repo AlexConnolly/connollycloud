@@ -41,16 +41,27 @@
     }
 
     function person(m) {
-      const avatar = m.avatar
+      const profileUrl = m.id ? "profile.html?u=" + encodeURIComponent(m.id) : null;
+      const avatarImg = m.avatar
         ? '<img class="avatar" src="' + esc(m.avatar) + '" alt="" width="72" height="72" loading="lazy">'
         : "";
+      const avatar = profileUrl && avatarImg
+        ? '<a href="' + profileUrl + '">' + avatarImg + "</a>"
+        : avatarImg;
+      const name = profileUrl
+        ? '<a href="' + profileUrl + '">' + esc(m.name) + "</a>"
+        : esc(m.name);
       const role = m.role ? '<span class="role">' + esc(m.role) + "</span>" : "";
+      const more = profileUrl
+        ? '<p class="more"><a href="' + profileUrl + '">View profile &amp; posts &rarr;</a></p>'
+        : "";
       return '<article class="person">' +
         '<div class="person-head">' + avatar +
-        '<div><h3>' + esc(m.name) + "</h3>" + role + "</div></div>" +
+        '<div><h3>' + name + "</h3>" + role + "</div></div>" +
         (m.description ? "<p>" + esc(m.description) + "</p>" : "") +
         projectList(m.projects) +
         linkList(m.links) +
+        more +
       "</article>";
     }
 

@@ -6,6 +6,7 @@
   },
   "family": [
     {
+      "id": "alex",
       "name": "Alex Connolly",
       "avatar": "assets/alex.png",
       "role": "Software Engineer",
