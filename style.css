@@ -1,92 +1,139 @@
-:root {
-  --bg: #fdfcf7;
-  --fg: #1a1a1a;
-  --muted: #666;
-  --accent: #2b5797;
-  --line: #e2ddd0;
-  --card: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #16171a;
-    --fg: #e8e6e0;
-    --muted: #9a978e;
-    --accent: #7fa8e0;
-    --line: #2c2e33;
-    --card: #1d1f23;
-  }
-}
-
-* { box-sizing: border-box; }
+/* connolly.cloud — like it's 1997. Best viewed in 800x600. */
 
 body {
   margin: 0;
-  padding: 2rem 1rem 4rem;
-  background: var(--bg);
-  color: var(--fg);
-  font: 16px/1.6 system-ui, -apple-system, Georgia, "Times New Roman", serif;
+  padding: 1.5em 1em 3em;
+  background: #008080; /* classic teal desktop */
+  color: #000000;
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-main { max-width: 720px; margin: 0 auto; }
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  background: #c0c0c0; /* silver window */
+  border: 3px ridge #dfdfdf;
+  padding: 1em 1.5em;
+}
 
-header { border-bottom: 2px solid var(--line); padding-bottom: 1rem; margin-bottom: 2rem; }
+/* ---- Header ---- */
+
+header {
+  text-align: center;
+  border-bottom: 2px groove #808080;
+  padding-bottom: .8em;
+  margin-bottom: 1em;
+}
 
 h1 {
-  margin: 0 0 .25rem;
-  font-size: 2rem;
-  letter-spacing: -.02em;
+  margin: .2em 0;
+  font-size: 2.4em;
+  font-weight: bold;
+  color: #000080; /* navy */
+  text-shadow: 1px 1px 0 #ffffff;
 }
 
-h1::before { content: "\2601\FE0F  "; }
+h1::before { content: "\2601 "; }
 
 h2 {
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--muted);
-  border-bottom: 1px solid var(--line);
-  padding-bottom: .3rem;
+  font-size: 1.3em;
+  color: #800000; /* maroon */
+  border-bottom: 1px dashed #808080;
+  padding-bottom: .2em;
 }
 
-.welcome { font-size: 1.15rem; margin: .5rem 0; }
-.about { color: var(--muted); margin: .5rem 0 0; }
+.welcome {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #000080;
+  margin: .4em 0;
+}
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+.about {
+  font-size: 1em;
+  margin: .6em 0 0;
+}
 
-.people { display: grid; gap: 1rem; }
+/* ---- Links: bright blue, underlined, purple when visited ---- */
+
+a { color: #0000ee; text-decoration: underline; }
+a:visited { color: #551a8b; }
+a:hover { color: #ee0000; background: #ffff99; }
+
+/* ---- People ---- */
+
+.people { margin-top: 1em; }
 
 .person {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 1rem 1.2rem;
+  background: #ffffff;
+  border: 3px outset #dfdfdf;
+  padding: .8em 1em;
+  margin-bottom: 1.2em;
 }
 
-.person-head { display: flex; align-items: center; gap: .9rem; }
-.person-head h3 { margin: 0; font-size: 1.2rem; }
+.person-head {
+  display: table;
+  width: 100%;
+  border-bottom: 1px solid #c0c0c0;
+  padding-bottom: .5em;
+  margin-bottom: .5em;
+}
+
+.person-head .avatar,
+.person-head > div { display: table-cell; vertical-align: middle; }
 
 .avatar {
-  border-radius: 50%;
-  background: var(--line);
-  flex: 0 0 auto;
+  border: 2px solid #808080;
+  margin-right: .9em;
+  width: 72px;
+  height: 72px;
+  background: #c0c0c0;
+}
+
+.person-head h3 {
+  margin: 0;
+  font-size: 1.4em;
+  color: #000080;
 }
 
 .role {
   display: inline-block;
-  font-size: .8rem;
+  font-size: .85em;
+  font-weight: bold;
+  color: #800000;
   text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--muted);
+  letter-spacing: .05em;
 }
 
-.person p { margin: .7rem 0; }
+.person p { margin: .6em 0; }
 
-ul.projects, ul.links { margin: .5rem 0 0; padding-left: 1.2rem; }
-ul.links { list-style: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: .8rem; }
-ul.links a::before { content: "\2192\00A0"; }
+/* Bullets: classic square markers */
+ul.projects { margin: .5em 0; padding-left: 1.6em; list-style: square; }
 
-.loading, .error { color: var(--muted); text-align: center; padding: 2rem; }
+ul.links { margin: .6em 0 0; padding: 0; list-style: none; }
+ul.links li { display: inline; margin-right: 1em; }
+ul.links a::before { content: "\00BB "; } /* » */
 
-footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 3rem; }
+/* ---- Status text ---- */
+
+.loading, .error {
+  text-align: center;
+  font-style: italic;
+  padding: 1.5em;
+}
+.error { color: #800000; font-weight: bold; }
+
+/* ---- Footer ---- */
+
+footer {
+  max-width: 640px;
+  margin: 1.2em auto 0;
+  text-align: center;
+  font-size: .8em;
+  color: #dfffff;
+}
+
+footer a { color: #ffff99; }
+footer a:visited { color: #ffff99; }
