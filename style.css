@@ -103,6 +103,26 @@ ul.links {
 
 .more { margin: 0.9rem 0 0; font-size: 0.9rem; }
 
+/* ---- Recent posts on home card ---- */
+
+.recent { margin: 0.9rem 0 0; }
+.recent-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+.recent-list { margin: 0; padding: 0; list-style: none; font-size: 0.92rem; }
+.recent-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.15rem 0;
+}
+.recent-list time { color: var(--muted); font-size: 0.82rem; white-space: nowrap; flex: 0 0 auto; }
+
 /* ---- Profile page ---- */
 
 .crumb { margin: 0 0 2rem; font-size: 0.9rem; }

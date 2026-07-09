@@ -7,6 +7,8 @@
   <meta name="description" content="The Connolly family homepage — a directory of the family and their projects.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#9729;</text></svg>">
   <link rel="stylesheet" href="style.css">
+  <script src="assets/markdown.js"></script>
+  <script src="assets/posts.js"></script>
 </head>
 <body>
   <main id="app">
@@ -55,14 +57,36 @@
       const more = profileUrl
         ? '<p class="more"><a href="' + profileUrl + '">View profile &amp; posts &rarr;</a></p>'
         : "";
+      const recent = m.id ? '<div class="recent" data-user="' + esc(m.id) + '"></div>' : "";
       return '<article class="person">' +
         '<div class="person-head">' + avatar +
         '<div><h3>' + name + "</h3>" + role + "</div></div>" +
         (m.description ? "<p>" + esc(m.description) + "</p>" : "") +
+        recent +
         projectList(m.projects) +
         linkList(m.links) +
         more +
       "</article>";
+    }
+
+    // Fill each card's placeholder with that person's latest few posts.
+    function fillRecent() {
+      document.querySelectorAll(".recent[data-user]").forEach((el) => {
+        const id = el.getAttribute("data-user");
+        posts.load(id, 3).then((list) => {
+          if (!list.length) return;
+          el.innerHTML =
+            '<p class="recent-label">Recent posts</p>' +
+            '<ul class="recent-list">' +
+            list.map((p) => {
+              const url = "profile.html?u=" + encodeURIComponent(id) + "#" + esc(p.slug);
+              const title = p.title || p.slug;
+              return '<li><a href="' + url + '">' + esc(title) + "</a>" +
+                (p.date ? ' <time>' + esc(md.formatDate(p.date)) + "</time>" : "") + "</li>";
+            }).join("") +
+            "</ul>";
+        });
+      });
     }
 
     fetch("data.json")
@@ -81,6 +105,7 @@
             (data.family || []).map(person).join("") +
           "</section>";
         document.getElementById("app").innerHTML = html;
+        fillRecent();
       })
       .catch((err) => {
         document.getElementById("app").innerHTML =
