@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>connolly.cloud</title>
+  <meta name="description" content="The Connolly family homepage — a directory of the family and their projects.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>&#9729;</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <p class="loading">Loading&hellip;</p>
+  </main>
+  <footer>Made with love, hosted on a cloud. &middot; <a href="https://github.com/AlexConnolly/connollycloud">source</a></footer>
+
+  <script>
+    // Tiny helper: escape user-provided strings before inserting as HTML.
+    const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
+
+    function linkList(links) {
+      if (!links || !links.length) return "";
+      return '<ul class="links">' + links.map((l) =>
+        '<li><a href="' + esc(l.url) + '">' + esc(l.label) + '</a></li>'
+      ).join("") + "</ul>";
+    }
+
+    function projectList(projects) {
+      if (!projects || !projects.length) return "";
+      return '<ul class="projects">' + projects.map((p) => {
+        const name = p.url
+          ? '<a href="' + esc(p.url) + '">' + esc(p.name) + "</a>"
+          : esc(p.name);
+        const desc = p.description ? ' &mdash; ' + esc(p.description) : "";
+        return "<li>" + name + desc + "</li>";
+      }).join("") + "</ul>";
+    }
+
+    function person(m) {
+      const avatar = m.avatar
+        ? '<img class="avatar" src="' + esc(m.avatar) + '" alt="" width="72" height="72" loading="lazy">'
+        : "";
+      const role = m.role ? '<span class="role">' + esc(m.role) + "</span>" : "";
+      return '<article class="person">' +
+        '<div class="person-head">' + avatar +
+        '<div><h3>' + esc(m.name) + "</h3>" + role + "</div></div>" +
+        (m.description ? "<p>" + esc(m.description) + "</p>" : "") +
+        projectList(m.projects) +
+        linkList(m.links) +
+      "</article>";
+    }
+
+    fetch("data.json")
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((data) => {
+        const s = data.site || {};
+        document.title = s.title || "connolly.cloud";
+        const html =
+          "<header>" +
+            "<h1>" + esc(s.title || "connolly.cloud") + "</h1>" +
+            (s.welcome ? '<p class="welcome">' + esc(s.welcome) + "</p>" : "") +
+            (s.about ? '<p class="about">' + esc(s.about) + "</p>" : "") +
+          "</header>" +
+          '<section class="people">' +
+            "<h2>The Family</h2>" +
+            (data.family || []).map(person).join("") +
+          "</section>";
+        document.getElementById("app").innerHTML = html;
+      })
+      .catch((err) => {
+        document.getElementById("app").innerHTML =
+          '<p class="error">Could not load the family directory (' + esc(err.message) + ").</p>";
+      });
+  </script>
+</body>
+</html>
