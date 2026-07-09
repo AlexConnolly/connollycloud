@@ -1,139 +1,114 @@
-/* connolly.cloud — like it's 1997. Best viewed in 800x600. */
+:root {
+  --bg: #ffffff;
+  --fg: #222222;
+  --muted: #767676;
+  --accent: #1a56b8;
+  --line: #eaeaea;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16161a;
+    --fg: #e6e6e6;
+    --muted: #9a9a9a;
+    --accent: #8ab4f8;
+    --line: #2a2a30;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  padding: 1.5em 1em 3em;
-  background: #008080; /* classic teal desktop */
-  color: #000000;
-  font-family: "Times New Roman", Times, Georgia, serif;
-  font-size: 16px;
-  line-height: 1.5;
+  padding: 4rem 1.25rem 6rem;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-main {
-  max-width: 640px;
-  margin: 0 auto;
-  background: #c0c0c0; /* silver window */
-  border: 3px ridge #dfdfdf;
-  padding: 1em 1.5em;
-}
+main { max-width: 34rem; margin: 0 auto; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 /* ---- Header ---- */
 
-header {
-  text-align: center;
-  border-bottom: 2px groove #808080;
-  padding-bottom: .8em;
-  margin-bottom: 1em;
-}
+header { margin-bottom: 3rem; }
 
 h1 {
-  margin: .2em 0;
-  font-size: 2.4em;
-  font-weight: bold;
-  color: #000080; /* navy */
-  text-shadow: 1px 1px 0 #ffffff;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
 }
 
-h1::before { content: "\2601 "; }
+.welcome { margin: 1rem 0 0; font-size: 1.05rem; }
+
+.about { margin: 0.75rem 0 0; color: var(--muted); }
+
+/* ---- Family ---- */
 
 h2 {
-  font-size: 1.3em;
-  color: #800000; /* maroon */
-  border-bottom: 1px dashed #808080;
-  padding-bottom: .2em;
+  margin: 0 0 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
 }
-
-.welcome {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: #000080;
-  margin: .4em 0;
-}
-
-.about {
-  font-size: 1em;
-  margin: .6em 0 0;
-}
-
-/* ---- Links: bright blue, underlined, purple when visited ---- */
-
-a { color: #0000ee; text-decoration: underline; }
-a:visited { color: #551a8b; }
-a:hover { color: #ee0000; background: #ffff99; }
-
-/* ---- People ---- */
-
-.people { margin-top: 1em; }
 
 .person {
-  background: #ffffff;
-  border: 3px outset #dfdfdf;
-  padding: .8em 1em;
-  margin-bottom: 1.2em;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--line);
 }
+.person:last-child { border-bottom: 1px solid var(--line); }
 
-.person-head {
-  display: table;
-  width: 100%;
-  border-bottom: 1px solid #c0c0c0;
-  padding-bottom: .5em;
-  margin-bottom: .5em;
-}
-
-.person-head .avatar,
-.person-head > div { display: table-cell; vertical-align: middle; }
+.person-head { display: flex; align-items: center; gap: 0.9rem; }
 
 .avatar {
-  border: 2px solid #808080;
-  margin-right: .9em;
-  width: 72px;
-  height: 72px;
-  background: #c0c0c0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--line);
 }
 
-.person-head h3 {
-  margin: 0;
-  font-size: 1.4em;
-  color: #000080;
-}
+.person-head h3 { margin: 0; font-size: 1.05rem; font-weight: 600; }
 
 .role {
-  display: inline-block;
-  font-size: .85em;
-  font-weight: bold;
-  color: #800000;
-  text-transform: uppercase;
-  letter-spacing: .05em;
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
 }
 
-.person p { margin: .6em 0; }
+.person > p { margin: 0.9rem 0 0; }
 
-/* Bullets: classic square markers */
-ul.projects { margin: .5em 0; padding-left: 1.6em; list-style: square; }
+ul.projects { margin: 0.9rem 0 0; padding: 0; list-style: none; }
+ul.projects li { margin-top: 0.3rem; }
+ul.projects li::before { content: "\2013\00A0"; color: var(--muted); }
 
-ul.links { margin: .6em 0 0; padding: 0; list-style: none; }
-ul.links li { display: inline; margin-right: 1em; }
-ul.links a::before { content: "\00BB "; } /* » */
-
-/* ---- Status text ---- */
-
-.loading, .error {
-  text-align: center;
-  font-style: italic;
-  padding: 1.5em;
+ul.links {
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  font-size: 0.9rem;
 }
-.error { color: #800000; font-weight: bold; }
 
-/* ---- Footer ---- */
+/* ---- Misc ---- */
+
+.loading, .error { color: var(--muted); padding: 2rem 0; }
+.error { color: #b00020; }
 
 footer {
-  max-width: 640px;
-  margin: 1.2em auto 0;
-  text-align: center;
-  font-size: .8em;
-  color: #dfffff;
+  max-width: 34rem;
+  margin: 3.5rem auto 0;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
-
-footer a { color: #ffff99; }
-footer a:visited { color: #ffff99; }
